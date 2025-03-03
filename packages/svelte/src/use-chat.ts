@@ -9,6 +9,7 @@ import type {
   UseChatOptions as SharedUseChatOptions,
   UIMessage,
 } from '@ai-sdk/ui-utils';
+import { Readable, Writable, derived, get, writable } from 'svelte/store';
 import {
   callChatApi,
   extractMaxToolInvocationStep,
@@ -21,9 +22,12 @@ import {
   updateToolCallResult,
 } from '@ai-sdk/ui-utils';
 import { useSWR } from 'sswr';
-import { Readable, Writable, derived, get, writable } from 'svelte/store';
 export type { CreateMessage, Message };
+const streamProtocolNew = writable<'data' | 'text'>('data');
 
+export function setStreamProtocol(newProtocol: 'text' | 'data') {
+  streamProtocolNew.set(newProtocol);
+}
 export type UseChatOptions = SharedUseChatOptions & {
   /**
 Maximum number of sequential LLM calls (steps), e.g. when you use tool calls. Must be at least 1.
@@ -234,7 +238,7 @@ export function useChat({
           ...extraMetadata.body,
           ...chatRequest.body,
         },
-        streamProtocol,
+        streamProtocol: get(streamProtocolNew),
         credentials: extraMetadata.credentials,
         headers: {
           ...extraMetadata.headers,
