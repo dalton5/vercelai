@@ -7,7 +7,7 @@ export default defineConfig([
     banner: {},
     format: ['cjs', 'esm'],
     external: ['vue'],
-    dts: true,
+    dts: false,
     sourcemap: true,
   },
 ]);
