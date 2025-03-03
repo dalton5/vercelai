@@ -1,6 +1,7 @@
 {
-  "name": "@ai-sdk/svelte",
-  "version": "1.1.19",
+  "private": false,
+  "name": "dalton5/ai-sdk-svelte",
+  "version": "1.1.20",
   "license": "Apache-2.0",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -32,10 +33,8 @@
     "sswr": "^2.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "@vercel/ai-tsconfig": "workspace:*",
+    "@types/node": "^18.19.78",
     "eslint": "8.57.1",
-    "eslint-config-vercel-ai": "workspace:*",
     "tsup": "^7.2.0",
     "typescript": "5.6.3"
   },
